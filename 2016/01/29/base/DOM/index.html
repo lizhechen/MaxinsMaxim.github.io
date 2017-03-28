@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <!-- 
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.0 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            DOM操作和样式操作库的封装 | 
+        
+        Maxin`s blog
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Maxin">
+    <meta name="description" content="null">
+    <meta name="keywords" content="null,dom">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Maxin`s blog">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://yoursite.com">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="DOM操作和样式操作库的封装 | Maxin`s blog">
+    <meta property="og:description" content="null">
+    <meta property="og:article:tag" content="dom"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/queue.js"></script>
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism-solarizedlight.css" type="text/css"><script src="/js/prism.js"></script></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">1.</span> <span class="post-toc-text">DOM操作和样式操作库的封装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">2.</span> <span class="post-toc-text">一、DOM常用方法和属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">3.</span> <span class="post-toc-text">二、获取元素的方法封装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">4.</span> <span class="post-toc-text">三、操作元素的方法封装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">5.</span> <span class="post-toc-text">四、操作样式的方法封装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">6.</span> <span class="post-toc-text">五、样式的设置和获取相关的方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#undefined"><span class="post-toc-number">7.</span> <span class="post-toc-text">六、总结</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                DOM操作和样式操作库的封装
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Maxin</strong>
+        <span>1月 29, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/dom/">dom</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=DOM操作和样式操作库的封装&url=http://yoursite.com//2016/01/29/base/DOM/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=DOM操作和样式操作库的封装&url=http://yoursite.com//2016/01/29/base/DOM/index.html&via=Maxin" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com//2016/01/29/base/DOM/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com//2016/01/29/base/DOM/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Maxin`s blog&title=DOM操作和样式操作库的封装&summary=null&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2016/01/29/base/DOM/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            font-size: 14px;
+        }
+
+        html, body {
+            /*background-color: #000;*/
+            /*color: #fff;*/
+        }
+    </style>
+<link rel="stylesheet" href="/css/prism-solarizedlight.css" type="text/css"><script src="/js/prism.js"></script></head>
+<body>
+<article class="article-container"><h3 class="title">DOM操作和样式操作库的封装</h3>
+    <div class="article__content article-content" style="height: auto;"><h3>一、DOM常用方法和属性</h3>
+        <p>以下粗略的罗列一下DOM的常用方法和属性，由于不是介绍DOM的基础内容，所以就不一一详细说明各个方法和属性了（学习DOM的封装的，一般都对基础DOM比较熟悉了）。</p>
+        <strong>1.1、获取页面中元素的方法</strong>
+        <ul>
+            <li><p>document.getElementById</p></li>
+            <li><p>context.getElementsByTagName：把指定容器中子孙容器中所有标签名为TAGNAME的都获取到了</p></li>
+            <li><p>document.getElementsByName：在IE浏览器中只对表单元素的name起作用</p></li>
+            <li><p>document.body || document.documentElement</p></li>
+            <li><p>context.querySelector、context.querySelectorAll：在IE6~8下不兼容，通过这个获取到的节点集合，不存在DOM映射</p></li>
+        </ul>
+        <strong>1.2、描述节点和节点之间关系的属性</strong>
+        <ul>
+            <li><p>childNodes</p></li>
+            <li><p>children：在IE6~8下获取的结果和标准浏览器获取的结果不一致</p></li>
+            <li><p>parentNode</p></li>
+            <li><p>previousSibling/previousElementSibling</p></li>
+            <li><p>nextSibling/nextElementSibling</p></li>
+            <li><p>lastChild/lastElementChild</p></li>
+            <li><p>firstChild/firstElementChild</p></li>
+        </ul>
+        <strong>注意：</strong>
+        <ol>
+            <li><p>在标准浏览器中会把空格和换行当做文本节点处理</p></li>
+            <li><p>所有带Element的属性在IE6~8中都不兼容</p></li>
+        </ol>
+        <strong>1.3、DOM的增删改</strong>
+        <ul>
+            <li><p>createElement</p></li>
+            <li><p>document.createDocumentFragment</p></li>
+            <li><p>appendChild</p></li>
+            <li><p>insertBefore</p></li>
+            <li><p>cloneNode(true/false)</p></li>
+            <li><p>replaceChild</p></li>
+            <li><p>removeChild</p></li>
+            <li><p>get/set/removeAttribute</p></li>
+        </ul>
+        <h3>二、获取元素的方法封装</h3><strong>2.1、获取某一个容器的元素子节点（children）</strong>
+        <p>首先获取所有的子节点（childNodes），在所有的子节点中，把元素节点过滤出来（nodeType===1的时候代表的是元素节点）。</p>
+        <p>如果该方法传递两个参数，第二个参数是一个标签名的话，我们还要在获取的子元素中把对应标签名进行二次筛选。</p>
+        <pre><code>function children(curEle, tagName) {
+    var ary = ;
+    // --&gt; IE6~8不能使用内置的children属性，我们自己写代码实现
+    if(/MSIE (6|7|8)/i.test(navigator.userAgent)) {
+        var nodeList = curEle.childNodes;
+        for (var i = 0, len = nodeList.length; i &lt; len; i++){
+        var curNode = nodeList[i];
+        if (curNode.nodeType === 1) {
+            ary[ary.length] = curNode;
+        }
+    }
+        nodeList = null;
+    } else {
+        // 标准浏览器中，我们直接使用children即可，但是这样获取的是一个元素集合（类数组），为了和IE6~8下保持一致，我们借用数组原型上的slice，实现把类数组转换为数组。
+        ary = Array.prototype.slice.call(curEle.children);
+    }
+
+    // --&gt; 二次筛选
+    if (typeof tagName === 'string') {
+        for (var k = 0; k &lt; ary.length; k++) { // 数组长度会减小的情况，必须要使用这样的方式判断长度，不能和上面一样
+            var curEleNode = ary[k];
+            if (curEleNode.nodeName.toLowerCase !== tagName.toLowerCase) {
+                // --&gt; 不是我想要的标签
+                ary.splice(k, 1);
+                k --;
+            }
+        }
+    }
+
+    return ary;
+}</code></pre>
+        <p>这个方法中，判断是否是IE6~8用的是正则：<code>/MSIE (6|7|8)/i.test(navigator.userAgent)</code>，而在封装DOM库的时候，在很多地方都要判断是否是IE6~8，我们可以每次都判断一次是不是IE6~8....不过，如果我们只判断一次，然后在所有的方法中都用，那是不是更好呢？....这就是JavaScript库封装中常用的惰性思想。
+        </p><strong>2.2、封装库的惰性思想</strong>
+        <p>我们封装库的方式使用单例的方式，然后将单例放到一个自执行函数中，基本的形式为：</p>
+        <pre><code>var utils = (function  {
+    function children(curEle, tagName) {
+        // ...
+    }
+
+    return {
+        children: children
+    }
+});</code></pre>
+        <p>这时候我们可以将判断是否是IE6~8的方法，放在自执行函数中，然后在具体的方法中使用：</p>
+        <pre><code>var utils = (function  {
+    var flag = "getComputedStyle" in window;
+    function children(curEle, tagName) {
+        if(!flag){
+ // IE6~8的情况
+        } else {
+ // 非IE6~8
+        }
+    }
+
+    return {
+        children: children
+    }
+});</code></pre>
+        <p>在自执行函数中的flag变量不销毁，存储的是判断当前浏览器是否兼容getComputedStyle，兼容的话是标准浏览器，但是如果<code>flag=false</code>，说明当前浏览器是IE6~8。</p>
+        <p>
+            惰性思想：惰性思想是JavaScript搞基编程技巧之一，在第一次给utils赋值的时候就已经把兼容处理好了，把最后结果存放在flag变量中，以后在每一个方法中，只要是IE6~8不兼容的，我们不需要重新检测，只需要使用flag的值即可。</p>
+        <p>那么用这种方式来改造当前的类库：</p>
+        <pre><code>var utils = (function  {
+    var flag = "getComputedStyle" in window;
+    function children(curEle, tagName) {
+        var ary = ;
+        if (!flag) {
+             var nodeList = curEle.childNodes;
+             for (var i = 0, len = nodeList.length; i &lt; len; i++) {
+             var curNode = nodeList[i];
+             curNode.nodeType === 1 ? ary[ary.length] = curNode : null;
+         }
+            nodeList = null;
+        } else {
+     ary = this.listToArray(curEle.children);
+            }
+            if (typeof tagName === "string") {
+     for (var k = 0; k &lt; ary.length; k++) {
+     var curEleNode = ary[k];
+     if (curEleNode.nodeName.toLowerCase !== tagName.toLowerCase) {
+     ary.splice(k, 1);
+     k--;
+     }
+     }
+            }
+            return ary;
+    }
+
+    return {
+        children: children
+    }
+});</code></pre>
+        <p>将之前几篇文章中封装的几个工具方法也加入该类库中（文章最后有该类库的下载地址）：</p>
+        <p class="img-wrapper-embedded" style="width: 100%; min-height: 119.567px;"><img src="http://p9.pstatp.com/large/18f3000a9b986d6d4ccd" img_width="638" img_height="234" alt="DOM操作和样式操作库的封装" onerror="javascript:errorimg.call(this);" data-index="0"></p>
+        <p>工具方法加入类库.png</p><strong>2.3、获取上一个兄弟元素节点（prev）</strong>
+        <p>首先获取当前元素的上一个哥哥节点，判断是否为元素节点，不是的话基于当前的节点继续找上面的哥哥节点.....一直找到哥哥元素节点为止，如果没有哥哥节点，返回null即可。</p>
+        <pre><code>function prev(curEle) {
+    if (flag) {
+        return curEle.previousElementSibling;
+    }
+    var pre = curEle.previousSibling;
+    while (pre &amp;&amp; pre.nodeType !== 1) {
+        pre = pre.previousSibling;
+    }
+    return pre;
+}</code></pre>
+        <strong>2.4、获取下一个兄弟元素节点（next）</strong>
+        <pre><code>function next(curEle) {
+    if (flag) {
+        return curEle.nextElementSibling;
+    }
+    var nex = curEle.nextSibling;
+    while (nex &amp;&amp; nex.nodeType !== 1) {
+        nex = nex.nextSibling;
+    }
+    return nex;
+}</code></pre>
+        <strong>2.5、获取前面所有的兄弟元素节点（prevAll）</strong>
+        <pre><code>function prevAll(curEle) {
+    var ary = ;
+    var pre = this.prev(curEle);
+    while (pre) {
+        ary.unshift(pre);
+        pre = this.prev(pre);
+    }
+    return ary;
+}</code></pre>
+        <strong>2.6、获取后面所有的兄弟元素节点（nextAll）</strong>
+        <pre><code>function nextAll(curEle) {
+    var ary = ;
+    var nex = this.next(curEle);
+    while (nex) {
+        ary.push(nex);
+        nex = this.next(nex);
+    }
+    return ary;
+}</code></pre>
+        <strong>2.7、获取相邻的两个元素节点（sibling）</strong>
+        <pre><code>function sibling(curEle) {
+    var pre = this.prev(curEle);
+    var nex = this.next(curEle);
+    var ary = ;
+    pre ? ary.push(pre) : null;
+    nex ? ary.push(nex) : null;
+    return ary;
+}</code></pre>
+        <strong>2.8、获取所有的兄弟元素节点（siblings）</strong>
+        <pre><code>function siblings(curEle) {
+    return this.prevAll(curEle).concat(this.nextAll(curEle));
+}</code></pre>
+        <strong>2.9、获取当前元素的索引（index）</strong>
+        <pre><code>function index(curEle) {
+    return this.prevAll(curEle).length;
+}</code></pre>
+        <strong>2.10、获取第一个元素子节点（firstChild）</strong>
+        <pre><code>function firstChild(curEle) {
+    var chs = this.children(curEle);
+    return chs.length &gt; 0 ? chs[0] : null;
+}</code></pre>
+        <strong>2.11、获取最后一个元素子节点（lastChild）</strong>
+        <pre><code>function lastChild(curEle) {
+    var chs = this.children(curEle);
+    return chs.length &gt; 0 ? chs[chs.length - 1] : null;
+}</code></pre>
+        <h3>三、操作元素的方法封装</h3><strong>3.1、向指定容器的末尾追加元素（append）</strong>
+        <pre><code>function append(newEle, container) {
+    container.appendChild(newEle);
+}</code></pre>
+        <strong>3.2、向指定容器的开头追加元素（prepend）</strong>
+        <p>把新的元素添加到容器中第一个子元素节点的前面,如果一个元素子节点都没有,就放在末尾即可。</p>
+        <pre><code>function prepend(newEle, container) {
+    var fir = this.firstChild(container);
+    if (fir) {
+        container.insertBefore(newEle, fir);
+        return;
+    }
+    container.appendChild(newEle);
+}</code></pre>
+        <strong>3.3、把新元素(newEle)追加到指定元素(oldEle)的前面（insertBefore）</strong>
+        <pre><code>function insertBefore(newEle, oldEle) {
+    oldEle.parentNode.insertBefore(newEle, oldEle);
+}</code></pre>
+        <strong>3.4、把新元素(newEle)追加到指定元素(oldEle)的后面（insertAfter）</strong>
+        <p>相当于追加到oldEle弟弟元素的前面,如果弟弟不存在,也就是当前元素已经是最后一个了,我们把新的元素放在最末尾即可。</p>
+        <pre><code>function insertAfter(newEle, oldEle) {
+    var nex = this.next(oldEle);
+    if (nex) {
+        oldEle.parentNode.insertBefore(newEle, nex);
+        return;
+    }
+    oldEle.parentNode.appendChild(newEle);
+}</code></pre>
+        <h3>四、操作样式的方法封装</h3><strong>4.1、验证当前元素中是否包含className这个样式类名（hasClass）</strong>
+        <pre><code>function hasClass(curEle, className) {
+    var reg = new RegExp("(^| +)" + className + "( +|$)");
+    return reg.test(curEle.className);
+}</code></pre>
+        <strong>4.2、给元素增加样式类名（addClass）</strong>
+        <pre><code>function addClass(curEle, className) {
+    var ary = className.replace(/(^ +| +$)/g, "").split(/ +/g);
+    for (var i = 0, len = ary.length; i &lt; len; i++) {
+        var curName = ary[i];
+        if (!this.hasClass(curEle, curName)) {
+            curEle.className += " " + curName;
+        }
+    }
+}</code></pre>
+        <strong>4.3、给元素移除样式类名（removeClass）</strong>
+        <pre><code>function removeClass(curEle, className) {
+    var ary = className.replace(/(^ +| +$)/g, "").split(/ +/g);
+    for (var i = 0, len = ary.length; i &lt; len; i++) {
+        var curName = ary[i];
+        if (this.hasClass(curEle, curName)) {
+            var reg = new RegExp("(^| +)" + curName + "( +|$)", "g");
+            curEle.className = curEle.className.replace(reg, " ");
+        }
+    }
+}</code></pre>
+        <strong>4.5、通过元素的样式类名获取一组元素集合（getElementsByClass）</strong>
+        <pre><code>function getElementsByClass(strClass, context) {
+    context = context || document;
+    if (flag) {
+        return this.listToArray(context.getElementsByClassName(strClass));
+    }
+    //-&gt;IE6~8
+    var ary = , strClassAry = strClass.replace(/(^ +| +$)/g, "").split(/ +/g);
+    var nodeList = context.getElementsByTagName("*");
+    for (var i = 0, len = nodeList.length; i &lt; len; i++) {
+        var curNode = nodeList[i];
+        var isOk = true;
+        for (var k = 0; k &lt; strClassAry.length; k++) {
+            var reg = new RegExp("(^| +)" + strClassAry[k] + "( +|$)");
+            if (!reg.test(curNode.className)) {
+                isOk = false;
+                break;
+            }
+        }
+        if (isOk) {
+            ary[ary.length] = curNode;
+        }
+    }
+    return ary;
+}</code></pre>
+        <h3>五、样式的设置和获取相关的方法</h3><strong>5.1、获取元素的样式值（getCss）</strong>
+        <pre><code>function getCss(attr) {
+    var val = null, reg = null;
+    if (flag) {
+        val = window.getComputedStyle(this, null)[attr];
+    } else {
+        if (attr === "opacity") {
+            val = this.currentStyle["filter"];
+            reg = /^alpha\(opacity=(\d+(?:\.\d+)?)\)$/;
+            val = reg.test(val) ? reg.exec(val)[1] / 100 : 1;
+        } else {
+            val = this.currentStyle[attr];
+        }
+    }
+    reg = /^(-?\d+(\.\d+)?)(px|pt|em|rem)?$/;
+    return reg.test(val) ? parseFloat(val) : val;
+}</code></pre>
+        <strong>5.2、给当前元素的某一个样式属性设置值(增加在行内样式上的)</strong>
+        <pre><code>function setCss(attr, value) {
+    if (attr === "float") {
+        this["style"]["cssFloat"] = value;
+        this["style"]["styleFloat"] = value;
+        return;
+    }
+    if (attr === "opacity") {
+        this["style"]["opacity"] = value;
+        this["style"]["filter"] = "alpha(opacity=" + value * 100 + ")";
+        return;
+    }
+    var reg = /^(width|height|top|bottom|left|right|((margin|padding)(Top|Bottom|Left|Right)?))$/;
+    if (reg.test(attr)) {
+        if (!isNaN(value)) {
+            value += "px";
+        }
+    }
+    this["style"][attr] = value;
+}</code></pre>
+        <strong>5.3、给当前元素批量的设置样式属性值（setGroupCss）</strong>
+        <pre><code>function setGroupCss(options) {
+    for (var key in options) {
+        if (options.hasOwnProperty(key)) {
+            setCss.call(this, key, options[key]);
+        }
+    }
+}</code></pre>
+        <strong>5.4、实现了获取、单独设置、批量设置元素的样式值（css）</strong>
+        <pre><code>function css(curEle) {
+    var argTwo = arguments[1], ary = Array.prototype.slice.call(arguments, 1);
+    if (typeof argTwo === "string") {
+        if (typeof arguments[2] === 'undefined') {
+            return getCss.apply(curEle, ary);
+        }
+        setCss.apply(curEle, ary);
+    }
+    argTwo = argTwo || 0;
+    if (argTwo.toString === "[object Object]") {
+        setGroupCss.apply(curEle, ary);
+    }
+}</code></pre>
+        <h3>六、总结</h3>
+        <p>以上的所有方法中，方法名大部分和jQuery中的类似，getElementsByClass方法在jQuery中没有实现，但是jQuery的一部分选择器也是基于这个方法原理来实现的。</p>
+        <p>firstChild、lastChild在jQuery中没有。</p></div>
+
+</article>
+</body>
+</html>
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2016/02/06/base/linux_cmd/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2015/06/29/base/string/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Maxin's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        maxinohnono@hotmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:maxinohnono@hotmail.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/dom/">dom<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/js基础/">js基础<span class="sidebar_archives-count">10</span></a></li><li><a class="sidebar_archives-link" href="/categories/linux/">linux<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/this/">this<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/作用域/">作用域<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/面向对象/">面向对象<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/about" title="About">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                About
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/tags" title="tags">
+                
+                    <i class="material-icons sidebar-material-icons">style</i>
+                
+                tags
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+
+    <!-- Facebook -->
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+        <a href="https://www.zhihu.com/people/ma-xin-44-45-20/activities" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-zhihu.png);">
+                <span class="visuallyhidden">Zhihu</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;Maxin`s blog
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+
+                </main>
+            </div>
+        </body>
+    
+</html>
