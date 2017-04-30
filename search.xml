@@ -439,7 +439,9 @@ father<span class="token punctuation">.</span><span class="token function">appen
       <content type="html"><![CDATA[<ol>
 <li>主动释放堆内存</li>
 <li>减少http请求次数</li>
-<li>CDN、雪碧图</li>
+<li>CDN、雪碧图、合并css、js</li>
+<li>延迟加载</li>
+<li>Ajax 异步加载数据</li>
 <li>动画能用css3就不要用JS写</li>
 </ol>
 <p>(未完待续)</p>
@@ -1143,6 +1145,63 @@ obj<span class="token punctuation">.</span><span class="token function">fn</span
     </entry>
     
     <entry>
+      <title><![CDATA[JS中的事件机制]]></title>
+      <url>http://yoursite.com/2016/02/06/a/JS%E4%BA%8B%E4%BB%B6/</url>
+      <content type="html"><![CDATA[<h3 id="鼠标事件对象："><a href="#鼠标事件对象：" class="headerlink" title="鼠标事件对象："></a>鼠标事件对象：</h3><h4 id="产生："><a href="#产生：" class="headerlink" title="产生："></a>产生：</h4><p>标准浏览器中事件对象e存在于绑定的函数中，在ie8-中这个事件对象在window.event属性上。<br>e = e || window.event</p>
+<p>clientX：鼠标点击位置相对于窗口的X轴坐标<br>clientY： 鼠标点击位置相对于窗口的Y轴坐标</p>
+<h4 id="事件兼容"><a href="#事件兼容" class="headerlink" title="事件兼容"></a>事件兼容</h4><p>事件对象：</p>
+<pre class=" language-javascript"><code class="language-javascript">e <span class="token operator">=</span> e <span class="token operator">||</span> window<span class="token punctuation">.</span>event
+</code></pre>
+<p>事件源：</p>
+<pre class=" language-javascript"><code class="language-javascript">e<span class="token punctuation">.</span>target <span class="token operator">=</span> e<span class="token punctuation">.</span>target <span class="token operator">||</span> e<span class="token punctuation">.</span>srcElement<span class="token punctuation">;</span>
+</code></pre>
+<p>e.pageX: 鼠标位置相对于页面的X轴坐标<br>e.pageY: 鼠标位置相对于页面的Y轴坐标</p>
+<pre class=" language-javascript"><code class="language-javascript">e<span class="token punctuation">.</span>pageX <span class="token operator">=</span> e<span class="token punctuation">.</span>pageX <span class="token operator">||</span> e<span class="token punctuation">.</span>clientX <span class="token operator">+</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>scrollLeft <span class="token operator">||</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>scrollLeft<span class="token punctuation">)</span><span class="token punctuation">;</span>
+e<span class="token punctuation">.</span>pageY <span class="token operator">=</span> e<span class="token punctuation">.</span>pageY <span class="token operator">||</span> e<span class="token punctuation">.</span>clientY <span class="token operator">+</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>scrollTop <span class="token operator">||</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>scrollTop<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>阻止默认行为:</p>
+<pre class=" language-javascript"><code class="language-javascript">e<span class="token punctuation">.</span>preventDefault <span class="token operator">?</span> e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> returnValue <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+</code></pre>
+<p>未完待续…</p>
+]]></content>
+      
+        <categories>
+            
+            <category> js基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 事件 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[linux常用命令]]></title>
+      <url>http://yoursite.com/2016/02/06/base/linux_cmd/</url>
+      <content type="html"><![CDATA[<p>pwd : 显示当前所在的位置<br>cd /aaa ： 进入aaa这个文件夹<br>cd ../ : 退出当前路径<br>cd ../../ : 一次退出两部<br>rm -rf : 删除<br>mkdir : 新建文件夹<br>ls ： 查看当前路径有多少内容<br>vim : 编辑</p>
+]]></content>
+      
+        <categories>
+            
+            <category> linux </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[变量提升]]></title>
       <url>http://yoursite.com/2016/02/06/a/variable_hosting/</url>
       <content type="html"><![CDATA[<h3 id="预解释"><a href="#预解释" class="headerlink" title="预解释"></a>预解释</h3><p><code>undefined</code>:</p>
@@ -1290,27 +1349,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
         <tags>
             
             <tag> variable hosting </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[linux常用命令]]></title>
-      <url>http://yoursite.com/2016/02/06/base/linux_cmd/</url>
-      <content type="html"><![CDATA[<p>pwd : 显示当前所在的位置<br>cd /aaa ： 进入aaa这个文件夹<br>cd ../ : 退出当前路径<br>cd ../../ : 一次退出两部<br>rm -rf : 删除<br>mkdir : 新建文件夹<br>ls ： 查看当前路径有多少内容<br>vim : 编辑</p>
-]]></content>
-      
-        <categories>
-            
-            <category> linux </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> linux </tag>
             
         </tags>
         
